@@ -48,7 +48,6 @@ class beta:
         post = ''
         counter = ''
         for line in data.readlines():
-            #print line
             for rep in repl: line = line.replace(rep, repl[rep])
             line = cutreplace(line, '<span style="color: red;" class="bbc_color">', '</span>')
             line = cutreplace(line, 'img', '/>')
@@ -73,7 +72,6 @@ class beta:
                 date = cutstring(line, 'action=profile', '<em>', '</em>')
                 dict[counter] = {'counter':counter, 'chapter':chapter, 'subject':subject, 'profile':profile, 'date':date, 'post':post}
                 continue
-
             list_post = line.find('<div class="list_posts">')
             bbc_code = line.find('<code class="bbc_code">')
             if bbc_code is not -1: bbc_code = 1
@@ -95,7 +93,6 @@ class beta:
             if list_post is not -1:
                 #line = cutreplace(line, '<a href', '</a>')
                 #print counter, {'bbc_code':bbc_code, 'codeheader':codeheader, 'smfSelectText':smfSelectText, 'topslice_quote':topslice_quote, 'bbc_link':bbc_link, 'bbc_img':bbc_img, 'bbc_size':bbc_size, 'botslice_quote':botslice_quote}
-                print counter, line
                 if bbc_code is -1 and codeheader is -1 and smfSelectText is -1 and topslice_quote is -1 and bbc_link is -1: 
                     if bbc_img == -1 and bbc_size == -1 and botslice_quote == -1:
                         post = cut(line, '<div class="list_posts">' ,'<END>')
@@ -147,11 +144,11 @@ class online:
                         user = cutstring(line, id[-1], '>', '<')
                         online_member[user] = {'id':uid}
         return online_member
-#online = online()
-#online.member()
-#member = member()
-#member.last()
+online = online()
+online.member()
+member = member()
+member.last()
 beta = beta()
 beta.recent()
-#statistic = statistic()
-#statistic.beta()
+statistic = statistic()
+statistic.beta()
