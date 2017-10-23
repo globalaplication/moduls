@@ -41,12 +41,7 @@ def cut(line, ref, end='</div>'):
             return line[ch+len(ref):len(line)-len(end)-1]
 class beta:
     def recent(self):
-        chapter = ''
-        subject = ''
-        profile = ''
-        date = ''
-        post = ''
-        counter = ''
+        counter, chapter, subject, profile, date, post = '', '', '', '', '', ''
         for line in data.readlines():
             for rep in repl: line = line.replace(rep, repl[rep])
             line = cutreplace(line, '<span style="color: red;" class="bbc_color">', '</span>')
@@ -89,8 +84,11 @@ class beta:
             if bbc_size is not -1: bbc_size = 1
             botslice_quote = line.find('<div class="botslice_quote">')
             if botslice_quote is not -1: botslice_quote = 1
+
             if list_post is not -1:
-                   if bbc_code is -1 and codeheader is -1 and smfSelectText is -1 and topslice_quote is -1 and bbc_link is -1: 
+                #line = cutreplace(line, '<a href', '</a>')
+                #print counter, {'bbc_code':bbc_code, 'codeheader':codeheader, 'smfSelectText':smfSelectText, 'topslice_quote':topslice_quote, 'bbc_link':bbc_link, 'bbc_img':bbc_img, 'bbc_size':bbc_size, 'botslice_quote':botslice_quote}
+                if bbc_code is -1 and codeheader is -1 and smfSelectText is -1 and topslice_quote is -1 and bbc_link is -1: 
                     if bbc_img == -1 and bbc_size == -1 and botslice_quote == -1:
                         post = cut(line, '<div class="list_posts">' ,'<END>')
                         dict[counter] = {'counter':counter, 'chapter':chapter, 'subject':subject, 'profile':profile, 'date':date, 'post':post}
